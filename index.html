@@ -992,9 +992,69 @@
             box-shadow: 0 0 8px var(--cyan);
         }
 
+        /* ===== CV DOWNLOAD CARD ===== */
+        .cv-download-card {
+            grid-column: span 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            background: linear-gradient(135deg,
+                rgba(0, 168, 255, 0.08) 0%,
+                rgba(0, 212, 255, 0.04) 50%,
+                rgba(0, 168, 255, 0.06) 100%);
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            min-height: 200px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cv-download-card:hover {
+            border-color: rgba(0, 212, 255, 0.4);
+            transform: translateY(-4px);
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+                0 20px 40px -10px rgba(0, 0, 0, 0.4),
+                0 0 60px -10px rgba(0, 212, 255, 0.3);
+        }
+
+        .cv-download-content {
+            text-align: center;
+        }
+
+        .cv-download-card .card-icon {
+            margin: 0 auto 16px;
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+        }
+
+        .cv-download-card .card-icon svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .cv-download-card h2 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cv-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            margin: 0;
+        }
+
+        .cv-download-card:hover .cv-subtitle {
+            color: var(--cyan);
+        }
+
         /* ===== CONTACT FORM - Premium Glass Design ===== */
         .contact-form-card {
-            grid-column: span 3;
+            grid-column: span 2;
             background: linear-gradient(135deg,
                 rgba(0, 168, 255, 0.08) 0%,
                 rgba(0, 212, 255, 0.04) 50%,
@@ -1038,12 +1098,20 @@
         }
 
         @media (max-width: 900px) {
+            .cv-download-card {
+                grid-column: span 2;
+                min-height: 150px;
+            }
             .contact-form-card {
                 grid-column: span 2;
             }
         }
 
         @media (max-width: 600px) {
+            .cv-download-card {
+                grid-column: span 1;
+                min-height: 180px;
+            }
             .contact-form-card {
                 grid-column: span 1;
             }
@@ -1051,15 +1119,9 @@
 
         .contact-form {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 16px;
             margin-top: 8px;
-        }
-
-        @media (max-width: 900px) {
-            .contact-form {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
 
         @media (max-width: 500px) {
@@ -1076,13 +1138,7 @@
         }
 
         .form-group.full-width {
-            grid-column: span 4;
-        }
-
-        @media (max-width: 900px) {
-            .form-group.full-width {
-                grid-column: span 2;
-            }
+            grid-column: span 2;
         }
 
         @media (max-width: 500px) {
@@ -1148,7 +1204,7 @@
 
         /* Form bottom row with message and send button */
         .form-bottom-row {
-            grid-column: span 4;
+            grid-column: span 2;
             display: flex;
             gap: 16px;
             align-items: flex-end;
@@ -1156,12 +1212,6 @@
 
         .form-bottom-row .form-group {
             flex: 1;
-        }
-
-        @media (max-width: 900px) {
-            .form-bottom-row {
-                grid-column: span 2;
-            }
         }
 
         @media (max-width: 500px) {
@@ -2021,6 +2071,19 @@
                     </div>
                 </div>
             </div>
+
+            <!-- CV DOWNLOAD -->
+            <a href="#" class="card cv-download-card animate-in" download>
+                <div class="cv-download-content">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </div>
+                    <h2>CV</h2>
+                    <p class="cv-subtitle">Click to download PDF</p>
+                </div>
+            </a>
 
             <!-- CONTACT FORM -->
             <div id="contactSection" class="card contact-form-card animate-in">
