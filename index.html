@@ -1205,14 +1205,24 @@
             transform: translateY(-1px) scale(1.02);
         }
 
-        .contact-emoji {
-            font-size: 1.2rem;
-            animation: pulse-emoji 2s ease-in-out infinite;
+        .winged-mail {
+            width: 36px;
+            height: 24px;
+            animation: fly-mail 2s ease-in-out infinite;
         }
 
-        @keyframes pulse-emoji {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
+        @keyframes fly-mail {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .sticky-contact-btn:hover .winged-mail {
+            animation: fly-mail-fast 0.4s ease-in-out infinite;
+        }
+
+        @keyframes fly-mail-fast {
+            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            50% { transform: translateY(-4px) rotate(2deg); }
         }
 
         @media (max-width: 500px) {
@@ -1220,10 +1230,11 @@
                 font-size: 0.9rem;
             }
             .sticky-contact-btn {
-                padding: 8px 14px;
+                padding: 10px 16px;
             }
-            .contact-text {
-                display: none;
+            .winged-mail {
+                width: 28px;
+                height: 18px;
             }
         }
 
@@ -1267,8 +1278,17 @@
         <div class="sticky-navbar-content">
             <span class="sticky-name">Mario Alberto Montejo Garay, MSc</span>
             <a href="#contactSection" class="sticky-contact-btn" title="Get in Touch">
-                <span class="contact-emoji">📧</span>
-                <span class="contact-text">Contact</span>
+                <svg class="winged-mail" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 40" fill="currentColor">
+                    <!-- Left Wing -->
+                    <path d="M16 20c-4-3-10-5-15-4 5 2 9 5 12 9l3-5z" opacity="0.9"/>
+                    <path d="M14 14c-3-4-8-7-13-7 4 3 7 7 10 12l3-5z" opacity="0.7"/>
+                    <!-- Right Wing -->
+                    <path d="M48 20c4-3 10-5 15-4-5 2-9 5-12 9l-3-5z" opacity="0.9"/>
+                    <path d="M50 14c3-4 8-7 13-7-4 3-7 7-10 12l-3-5z" opacity="0.7"/>
+                    <!-- Envelope -->
+                    <rect x="18" y="12" width="28" height="20" rx="2" fill="currentColor"/>
+                    <path d="M18 14l14 10 14-10" fill="none" stroke="rgba(0,100,200,0.5)" stroke-width="2"/>
+                </svg>
             </a>
         </div>
     </nav>
