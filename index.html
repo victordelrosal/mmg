@@ -861,6 +861,11 @@
         /* ===== CONTACT FORM ===== */
         .contact-form-card {
             grid-column: span 3;
+            background: linear-gradient(135deg, var(--white) 0%, var(--gray-50) 100%);
+        }
+
+        .contact-form-card .card-icon {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 50%, #f39c12 100%);
         }
 
         @media (max-width: 900px) {
@@ -877,12 +882,18 @@
 
         .contact-form {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-top: 8px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 4px;
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 900px) {
+            .contact-form {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
             .contact-form {
                 grid-template-columns: 1fr;
             }
@@ -891,143 +902,186 @@
         .form-group {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 0;
+            position: relative;
         }
 
         .form-group.full-width {
-            grid-column: span 2;
+            grid-column: span 4;
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 900px) {
+            .form-group.full-width {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 500px) {
             .form-group.full-width {
                 grid-column: span 1;
             }
         }
 
         .form-group label {
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--gray-600);
+            position: absolute;
+            top: 10px;
+            left: 14px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--blue-accent);
+            pointer-events: none;
         }
 
         .form-group input,
         .form-group textarea {
-            padding: 14px 16px;
-            border: 1px solid var(--gray-200);
-            border-radius: 10px;
-            font-size: 0.9rem;
+            padding: 28px 14px 10px 14px;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            font-size: 0.85rem;
             font-family: inherit;
+            font-weight: 500;
             color: var(--gray-800);
-            background: var(--gray-50);
-            transition: all 0.3s ease;
+            background: var(--white);
+            transition: all 0.25s ease;
             outline: none;
+        }
+
+        .form-group input:hover,
+        .form-group textarea:hover {
+            border-color: var(--gray-300);
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             border-color: var(--blue-accent);
-            background: linear-gradient(135deg, var(--gray-50) 0%, var(--blue-pale) 100%);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
         }
 
         .form-group input::placeholder,
         .form-group textarea::placeholder {
             color: var(--gray-400);
+            font-weight: 400;
         }
 
         .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
+            min-height: 80px;
+            resize: none;
         }
 
         .submit-btn {
-            padding: 16px 32px;
-            background: linear-gradient(135deg, var(--navy-light) 0%, var(--blue-accent) 100%);
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 50%, #f39c12 100%);
             color: var(--white);
             border: none;
-            border-radius: 10px;
-            font-size: 0.95rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
             font-weight: 600;
             font-family: inherit;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            margin-top: 8px;
+            box-shadow:
+                0 4px 15px rgba(238, 90, 36, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow:
+                0 8px 25px rgba(238, 90, 36, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
 
         .submit-btn:active {
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         .submit-btn svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
         }
 
         /* Success Message */
         .success-message {
             display: none;
-            padding: 20px 24px;
-            background: linear-gradient(135deg, var(--gray-50) 0%, var(--blue-pale) 100%);
-            border: 1px solid var(--blue-accent);
-            border-radius: 12px;
-            margin-top: 16px;
+            padding: 24px;
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border: 2px solid #28a745;
+            border-radius: 16px;
+            margin-top: 12px;
             align-items: center;
             gap: 16px;
         }
 
         .success-message.show {
             display: flex;
-            animation: slideIn 0.4s ease;
+            animation: successPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        @keyframes slideIn {
-            from {
+        @keyframes successPop {
+            0% {
                 opacity: 0;
-                transform: translateY(-10px);
+                transform: scale(0.8);
             }
-            to {
+            100% {
                 opacity: 1;
-                transform: translateY(0);
+                transform: scale(1);
             }
         }
 
         .success-icon {
-            width: 48px;
-            height: 48px;
-            min-width: 48px;
-            background: linear-gradient(135deg, var(--navy-light) 0%, var(--blue-accent) 100%);
+            width: 52px;
+            height: 52px;
+            min-width: 52px;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
         }
 
         .success-icon svg {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             color: var(--white);
         }
 
         .success-text h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--gray-900);
-            margin-bottom: 4px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #155724;
+            margin-bottom: 2px;
         }
 
         .success-text p {
             font-size: 0.85rem;
-            color: var(--gray-600);
-            line-height: 1.5;
+            color: #155724;
+            line-height: 1.4;
+            opacity: 0.85;
         }
 
         /* ===== STICKY NAVBAR ===== */
@@ -1104,28 +1158,63 @@
         .sticky-contact-btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px 18px;
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
+            gap: 10px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 50%, #f39c12 100%);
+            border: none;
+            border-radius: 50px;
             color: var(--white);
             text-decoration: none;
             font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow:
+                0 4px 15px rgba(238, 90, 36, 0.4),
+                0 2px 4px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sticky-contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent);
+            transition: left 0.5s ease;
+        }
+
+        .sticky-contact-btn:hover::before {
+            left: 100%;
         }
 
         .sticky-contact-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow:
+                0 8px 25px rgba(238, 90, 36, 0.5),
+                0 4px 10px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .sticky-contact-btn:active {
+            transform: translateY(-1px) scale(1.02);
         }
 
         .contact-emoji {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            animation: pulse-emoji 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-emoji {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
         }
 
         @media (max-width: 500px) {
@@ -1650,7 +1739,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                 </div>
-                <h2>Get In Touch</h2>
+                <h2>Let's Connect</h2>
                 <form id="contactForm" class="contact-form" action="https://formsubmit.co/mtromario98@hotmail.com" method="POST">
                     <!-- FormSubmit Configuration -->
                     <input type="hidden" name="_cc" value="victordelrosal@gmail.com">
@@ -1659,36 +1748,35 @@
                     <input type="hidden" name="_template" value="table">
 
                     <div class="form-group">
-                        <label for="fullName">Full Name *</label>
+                        <label for="fullName">Your Name</label>
                         <input type="text" id="fullName" name="Full Name" placeholder="John Smith" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email Address *</label>
+                        <label for="email">Email</label>
                         <input type="email" id="email" name="Email" placeholder="john@company.com" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="role">Role / Position *</label>
-                        <input type="text" id="role" name="Role/Position" placeholder="Hiring Manager, Recruiter, etc." required>
+                        <label for="role">Role</label>
+                        <input type="text" id="role" name="Role/Position" placeholder="Your position" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="company">Company *</label>
-                        <input type="text" id="company" name="Company" placeholder="Company Name" required>
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="Company" placeholder="Company name" required>
                     </div>
 
-                    <div class="form-group full-width">
-                        <label for="message">Message (Optional)</label>
-                        <textarea id="message" name="Message" placeholder="Tell me about the opportunity or how I can help..."></textarea>
-                    </div>
-
-                    <div class="form-group full-width">
+                    <div class="form-group full-width" style="display: flex; flex-direction: row; align-items: flex-end; gap: 12px;">
+                        <div style="flex: 1; position: relative;">
+                            <label for="message" style="position: absolute; top: 10px; left: 14px;">Message</label>
+                            <textarea id="message" name="Message" placeholder="Brief message (optional)" style="width: 100%;"></textarea>
+                        </div>
                         <button type="submit" class="submit-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                             </svg>
-                            Send Message
+                            Send
                         </button>
                     </div>
                 </form>
