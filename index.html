@@ -1220,7 +1220,7 @@
                 flex-direction: column;
                 align-items: stretch;
             }
-            .form-bottom-row .sphere-btn {
+            .form-bottom-row .form-submit-btn {
                 align-self: flex-end;
             }
         }
@@ -1463,20 +1463,48 @@
                 inset 0 4px 8px rgba(255, 255, 255, 0.3);
         }
 
-        /* Contact form sphere - no external shadow, centered with textarea */
-        .form-bottom-row .sphere-btn {
+        /* Contact form submit button - dark glass style */
+        .form-bottom-row .form-submit-btn {
+            width: 52px;
+            height: 52px;
+            min-width: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            cursor: pointer;
+            background: linear-gradient(135deg,
+                rgba(0, 212, 255, 0.15) 0%,
+                rgba(0, 168, 255, 0.08) 100%);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             align-self: center;
             margin-bottom: 6px;
-            box-shadow:
-                inset 0 -4px 12px rgba(0, 0, 0, 0.3),
-                inset 0 4px 8px rgba(255, 255, 255, 0.2);
         }
 
-        .form-bottom-row .sphere-btn:hover {
-            transform: translateY(-3px) scale(1.08);
-            box-shadow:
-                inset 0 -4px 12px rgba(0, 0, 0, 0.3),
-                inset 0 4px 8px rgba(255, 255, 255, 0.3);
+        .form-bottom-row .form-submit-btn:hover {
+            transform: translateY(-3px);
+            border-color: rgba(0, 212, 255, 0.4);
+            background: linear-gradient(135deg,
+                rgba(0, 212, 255, 0.25) 0%,
+                rgba(0, 168, 255, 0.15) 100%);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.25);
+        }
+
+        .form-bottom-row .form-submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .form-bottom-row .form-submit-btn .send-icon {
+            width: 22px;
+            height: 22px;
+            color: var(--cyan);
+            transition: transform 0.3s ease;
+        }
+
+        .form-bottom-row .form-submit-btn:hover .send-icon {
+            transform: translateX(2px);
         }
 
         @media (max-width: 500px) {
@@ -2073,7 +2101,7 @@
             </div>
 
             <!-- CV DOWNLOAD -->
-            <a href="#" class="card cv-download-card animate-in" download>
+            <a href="docs/Mario_Montejo_CV.pdf" class="card cv-download-card animate-in" download>
                 <div class="cv-download-content">
                     <div class="card-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -2124,7 +2152,7 @@
                             <label for="message">Message</label>
                             <textarea id="message" name="Message" placeholder="How can Mario help you?"></textarea>
                         </div>
-                        <button type="submit" class="sphere-btn" title="Send Message">
+                        <button type="submit" class="form-submit-btn" title="Send Message">
                             <svg class="send-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
                             </svg>
