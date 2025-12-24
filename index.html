@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Mario Alberto Montejo Garay, MSc</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👤</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Primary palette - McKinsey/WEF inspired */
+            --navy-dark: #0A1628;
+            --navy: #102A43;
+            --navy-light: #1E3A5F;
+            --blue-accent: #2563EB;
+            --blue-light: #3B82F6;
+            --blue-pale: #DBEAFE;
+
+            /* Neutrals */
+            --white: #FFFFFF;
+            --gray-50: #F8FAFC;
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-300: #CBD5E1;
+            --gray-400: #94A3B8;
+            --gray-500: #64748B;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1E293B;
+            --gray-900: #0F172A;
+
+            /* Accent colors - subtle, professional */
+            --accent-teal: #0D9488;
+            --accent-teal-light: #14B8A6;
+            --accent-amber: #D97706;
+            --accent-rose: #BE185D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: var(--gray-800);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ===== FLIP ANIMATION STYLES ===== */
+        .flip-container {
+            perspective: 1000px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        /* Hover scale effects - Cards and Sections */
+        .header-flip-container {
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .header-flip-container:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .header-flip-container:hover .header-card {
+            box-shadow: 0 40px 100px rgba(37, 99, 235, 0.5);
+        }
+
+        .card-flip-container {
+            transition: transform 0.3s ease;
+            position: relative;
+            height: 100%;
+        }
+
+        .card-flip-container > .flip-inner {
+            height: 100%;
+        }
+
+        .card-flip-container .flip-front {
+            height: 100%;
+        }
+
+        .card-flip-container:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .card-flip-container:hover .card {
+            box-shadow: 0 24px 64px rgba(37, 99, 235, 0.25), 0 12px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-flip-container.full-width {
+            grid-column: span 3;
+        }
+
+        .card-flip-container.full-width:hover {
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 900px) {
+            .card-flip-container.full-width {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .card-flip-container.full-width {
+                grid-column: span 1;
+            }
+        }
+
+        /* Hover scale effects - Individual Elements */
+        .element-flip-container {
+            position: relative;
+        }
+
+        .element-flip-container:hover {
+            transform: scale(1.05);
+            z-index: 5;
+        }
+
+        .skill-flip-container {
+            position: relative;
+        }
+
+        .skill-flip-container:hover {
+            transform: scale(1.02);
+            z-index: 5;
+        }
+
+        .flip-container.flipped .flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-front,
+        .flip-back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .flip-front {
+            position: relative;
+        }
+
+        .flip-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotateY(180deg);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 24px;
+            text-align: left;
+        }
+
+        /* Card flip backs - professional gradient */
+        .card-flip-container .flip-back {
+            background: linear-gradient(135deg, var(--navy-light) 0%, var(--blue-accent) 100%);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.3);
+            color: var(--white);
+            height: 100%;
+        }
+
+        .back-content {
+            width: 100%;
+        }
+
+        .back-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+            color: var(--white);
+        }
+
+        .back-content p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--gray-300);
+        }
+
+        .back-content .flip-hint {
+            margin-top: 20px;
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .back-content .flip-hint svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Header card flip */
+        .header-flip-container .flip-back {
+            background: linear-gradient(135deg, var(--navy-light) 0%, var(--blue-accent) 100%);
+            border-radius: 16px;
+            color: var(--white);
+            box-shadow: 0 20px 60px rgba(37, 99, 235, 0.3);
+        }
+
+        .header-flip-container .back-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+        }
+
+        .header-flip-container .back-content p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Element-level flip containers */
+        .element-flip-container {
+            perspective: 800px;
+        }
+
+        .element-flip-container .flip-inner {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .element-flip-container.flipped .flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Experience item flip */
+        .experience-flip {
+            min-height: 110px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .experience-flip .flip-inner {
+            height: 100%;
+            min-height: 110px;
+            flex: 1;
+        }
+
+        .experience-flip .flip-front,
+        .experience-flip .flip-back {
+            min-height: 110px;
+            height: 100%;
+        }
+
+        .experience-flip .flip-back {
+            background: linear-gradient(135deg, var(--navy-light) 0%, var(--blue-accent) 100%);
+            border-radius: 12px;
+            color: var(--white);
+            padding: 20px;
+        }
+
+        .experience-flip .back-content {
+            width: 100%;
+        }
+
+        .experience-flip .back-content p {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--gray-300);
+        }
+
+        /* Achievement badge flip */
+        .achievement-flip {
+            min-height: 140px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .achievement-flip .flip-inner {
+            height: 100%;
+            min-height: 140px;
+            flex: 1;
+        }
+
+        .achievement-flip .flip-front,
+        .achievement-flip .flip-back {
+            min-height: 140px;
+            height: 100%;
+        }
+
+        .achievement-flip .flip-back {
+            background: linear-gradient(135deg, var(--navy-light) 0%, var(--blue-accent) 100%);
+            border-radius: 12px;
+            color: var(--white);
+            padding: 24px;
+        }
+
+        .achievement-flip .back-content {
+            width: 100%;
+        }
+
+        .achievement-flip .back-content p {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: var(--gray-300);
+        }
+
+        /* Skill tag flip */
+        .skill-flip-container {
+            perspective: 600px;
+            display: block;
+            width: 100%;
+            min-height: 50px;
+        }
+
+        .skill-flip-container .flip-inner {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: 50px;
+            width: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .skill-flip-container .flip-front {
+            min-height: 50px;
+            width: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .skill-flip-container .flip-back {
+            min-height: 50px;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, var(--navy-light) 0%, var(--blue-accent) 100%);
+            border-radius: 10px;
+            color: var(--white);
+            padding: 10px 14px;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .skill-flip-container.flipped .flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* Academic item flip */
+        .academic-flip {
+            min-height: 80px;
+            flex: 1;
+        }
+
+        .academic-flip .flip-inner {
+            height: 100%;
+            min-height: 80px;
+        }
+
+        .academic-flip .flip-front,
+        .academic-flip .flip-back {
+            min-height: 80px;
+            height: 100%;
+        }
+
+        .academic-flip {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .academic-flip .flip-back {
+            background: linear-gradient(135deg, var(--navy-light) 0%, var(--blue-accent) 100%);
+            border-radius: 10px;
+            color: var(--white);
+            padding: 16px 20px;
+        }
+
+        .academic-flip .back-content {
+            width: 100%;
+        }
+
+        .academic-flip .back-content p {
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: var(--gray-300);
+        }
+
+        /* ===== HEADER CARD ===== */
+        .header-card {
+            background: linear-gradient(135deg, var(--navy-light) 0%, var(--blue-accent) 100%);
+            border-radius: 16px;
+            padding: 48px;
+            margin-bottom: 24px;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(37, 99, 235, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .header-card:hover {
+            box-shadow: 0 32px 80px rgba(37, 99, 235, 0.4);
+        }
+
+        .header-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .header-content-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .photo-placeholder {
+            width: 140px;
+            height: 140px;
+            min-width: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.5) 0%, rgba(37, 99, 235, 0.3) 100%);
+            border: 3px solid rgba(59, 130, 246, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+        }
+
+        .photo-placeholder svg {
+            width: 60px;
+            height: 60px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header-text {
+            flex: 1;
+        }
+
+        .header-card h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+            letter-spacing: -0.02em;
+        }
+
+        .header-card .title {
+            font-size: 1.05rem;
+            opacity: 0.9;
+            font-weight: 400;
+            margin-bottom: 24px;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        .header-card .contact {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .header-card .contact svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .header-card h1 {
+                font-size: 1.8rem;
+            }
+            .header-card {
+                padding: 32px;
+            }
+            .header-content-wrapper {
+                flex-direction: column;
+                text-align: center;
+                gap: 24px;
+            }
+            .photo-placeholder {
+                width: 120px;
+                height: 120px;
+                min-width: 120px;
+            }
+            .header-card .contact {
+                justify-content: center;
+            }
+            .years-badge {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            box-shadow: 0 16px 56px rgba(37, 99, 235, 0.2), 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--navy-light) 0%, var(--blue-accent) 50%, var(--blue-light) 100%);
+            transition: height 0.3s ease;
+        }
+
+        .card:hover::after {
+            height: 4px;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--navy-light) 0%, var(--blue-accent) 100%);
+        }
+
+        .card-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--white);
+        }
+
+        .card h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--gray-900);
+            letter-spacing: -0.01em;
+            flex-shrink: 0;
+        }
+
+        /* Wrapper for card items - fills remaining space and distributes evenly */
+        .card-items-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .card ul {
+            list-style: none;
+        }
+
+        .card li {
+            position: relative;
+            padding-left: 16px;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        .card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--blue-accent);
+        }
+
+        .card.large {
+            grid-column: span 2;
+        }
+
+        .card.full-width {
+            grid-column: span 3;
+        }
+
+        @media (max-width: 900px) {
+            .card.full-width {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .card.large,
+            .card.full-width {
+                grid-column: span 1;
+            }
+        }
+
+        /* ===== EXPERIENCE ITEMS ===== */
+        .experience-item {
+            padding: 18px 20px;
+            background: var(--gray-50);
+            border-radius: 10px;
+            transition: all 0.3s ease, transform 0.3s ease;
+            min-height: 110px;
+            height: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid var(--gray-100);
+        }
+
+        .experience-item:hover {
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--blue-pale) 100%);
+            border-color: var(--blue-accent);
+            transform: scale(1.05);
+        }
+
+        .experience-item h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 6px;
+        }
+
+        .experience-item p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        /* ===== SKILLS ===== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        @media (max-width: 1100px) {
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .skill-tag {
+            background: var(--gray-50);
+            padding: 14px 16px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            transition: all 0.3s ease, transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            min-height: 50px;
+            border: 1px solid var(--gray-100);
+        }
+
+        .skill-tag:hover {
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--blue-pale) 100%);
+            color: var(--gray-800);
+            border-color: var(--blue-accent);
+        }
+
+        /* ===== ACHIEVEMENT BADGES ===== */
+        .achievement-badge {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 24px;
+            background: var(--gray-50);
+            border-radius: 10px;
+            min-height: 140px;
+            height: 100%;
+            flex: 1;
+            border: 1px solid var(--gray-100);
+            transition: all 0.3s ease, transform 0.3s ease;
+        }
+
+        .achievement-badge:hover {
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--blue-pale) 100%);
+            border-color: var(--blue-accent);
+            transform: scale(1.05);
+        }
+
+        .badge-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--navy-light) 0%, var(--blue-accent) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .badge-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--white);
+        }
+
+        .badge-content h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+
+        .badge-content p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        /* ===== YEARS BADGE ===== */
+        .years-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(30, 58, 95, 0.6) 0%, rgba(37, 99, 235, 0.4) 100%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .animate-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-flip-container:nth-child(1) .card { animation-delay: 0.1s; }
+        .card-flip-container:nth-child(2) .card { animation-delay: 0.2s; }
+        .card-flip-container:nth-child(3) .card { animation-delay: 0.3s; }
+        .card-flip-container:nth-child(4) .card { animation-delay: 0.4s; }
+
+        /* ===== ACADEMIC LIST ITEMS ===== */
+        .academic-list-item {
+            flex: 1;
+        }
+
+        .academic-list-item .flip-front {
+            position: relative;
+            padding: 14px 16px 14px 24px;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+            line-height: 1.6;
+            min-height: 80px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            background: var(--gray-50);
+            border-radius: 10px;
+            border: 1px solid var(--gray-100);
+            transition: all 0.3s ease, transform 0.3s ease;
+        }
+
+        .academic-list-item .flip-front:hover {
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--blue-pale) 100%);
+            border-color: var(--blue-accent);
+            transform: scale(1.05);
+        }
+
+        .academic-list-item .flip-front::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--blue-accent);
+        }
+
+        /* ===== CLICK INDICATOR ===== */
+        @keyframes subtlePulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .flip-container:not(.flipped):hover::after {
+            content: 'Click to flip';
+            position: absolute;
+            bottom: 10px;
+            right: 14px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--gray-400);
+            animation: subtlePulse 2s infinite;
+            pointer-events: none;
+        }
+
+        .header-flip-container:not(.flipped):hover::after {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .element-flip-container:not(.flipped):hover::after {
+            bottom: 6px;
+            right: 10px;
+            font-size: 0.65rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER CARD -->
+        <div class="flip-container header-flip-container animate-in">
+            <div class="flip-inner">
+                <div class="flip-front">
+                    <div class="header-card">
+                        <div class="header-content-wrapper">
+                            <div class="photo-placeholder">
+                                <!-- Replace with <img src="photo.jpg" alt="Mario Montejo"> -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                            </div>
+                            <div class="header-text">
+                                <h1>Mario Alberto Montejo Garay, MSc</h1>
+                                <p class="title">Bilingual Systems Analyst and Technical Support Engineer with 20 years of experience in systems analysis and management, technical support, and IT</p>
+                                <div class="contact">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                    </svg>
+                                    mtromario98@hotmail.com
+                                </div>
+                                <div class="years-badge">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    20+ Years Experience
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flip-back">
+                    <div class="back-content">
+                        <h3>My Mission</h3>
+                        <p>I bridge the gap between technology and people. With dual expertise in Electronic Engineering and Psychology, I don't just solve technical problems—I understand the humans behind them. Every support interaction is an opportunity to empower users and transform frustration into confidence.</p>
+                        <div class="flip-hint">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                            </svg>
+                            Click to flip back
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <!-- ACADEMIC BACKGROUND CARD -->
+            <div class="flip-container card-flip-container animate-in">
+                <div class="flip-inner">
+                    <div class="flip-front">
+                        <div class="card">
+                            <div class="card-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                                    <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                                </svg>
+                            </div>
+                            <h2>Academic Background</h2>
+                            <div class="card-items-wrapper">
+                                <!-- Academic Item 1 -->
+                                <div class="flip-container element-flip-container academic-flip academic-list-item">
+                                    <div class="flip-inner">
+                                        <div class="flip-front">Bachelor of Science in Electronic Engineering</div>
+                                        <div class="flip-back">
+                                            <div class="back-content">
+                                                <p>Foundation in systems thinking, circuit design, and technical problem-solving that underpins my analytical approach to IT challenges.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Academic Item 2 -->
+                                <div class="flip-container element-flip-container academic-flip academic-list-item">
+                                    <div class="flip-inner">
+                                        <div class="flip-front">Master of Science in Psychology with a minor in Education</div>
+                                        <div class="flip-back">
+                                            <div class="back-content">
+                                                <p>Understanding the human side of technology—how people learn, adapt, and interact with systems. This shapes my user-centric support approach.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Academic Item 3 -->
+                                <div class="flip-container element-flip-container academic-flip academic-list-item">
+                                    <div class="flip-inner">
+                                        <div class="flip-front">Advanced Business English Certification Program</div>
+                                        <div class="flip-back">
+                                            <div class="back-content">
+                                                <p>Professional communication skills enabling seamless collaboration across global teams and clear technical documentation.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Academic Item 4 -->
+                                <div class="flip-container element-flip-container academic-flip academic-list-item">
+                                    <div class="flip-inner">
+                                        <div class="flip-front">DELE Official Certified Examiner and Professor (Spanish International Test) – Ministry of Education of Spain</div>
+                                        <div class="flip-back">
+                                            <div class="back-content">
+                                                <p>Official recognition of bilingual expertise at the highest level, enabling cross-cultural technical support and training.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-back">
+                        <div class="back-content">
+                            <h3>Why This Combination?</h3>
+                            <p>Engineering taught me how systems work. Psychology taught me how people work. Together, they make me uniquely effective at translating complex technical concepts into human understanding—and at designing solutions that actually fit how people think and work.</p>
+                            <div class="flip-hint">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                </svg>
+                                Click to flip back
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WORK EXPERIENCE CARD -->
+            <div class="flip-container card-flip-container animate-in">
+                <div class="flip-inner">
+                    <div class="flip-front">
+                        <div class="card">
+                            <div class="card-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <h2>Work Experience</h2>
+                            <div class="card-items-wrapper">
+                                <!-- Experience Item 1 -->
+                                <div class="flip-container element-flip-container experience-flip">
+                                    <div class="flip-inner">
+                                        <div class="flip-front">
+                                            <div class="experience-item">
+                                                <h3>Bilingual IT and Systems Analyst Engineer</h3>
+                                                <p>TATA TCS, Mexico</p>
+                                            </div>
+                                        </div>
+                                        <div class="flip-back">
+                                            <div class="back-content">
+                                                <p>Enterprise-scale support for Fortune 500 clients. Handling complex multi-tier technical challenges across global time zones with 8 "On the Spot" awards for excellence.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Experience Item 2 -->
+                                <div class="flip-container element-flip-container experience-flip">
+                                    <div class="flip-inner">
+                                        <div class="flip-front">
+                                            <div class="experience-item">
+                                                <h3>Bilingual Systems Analyst & Technical Support Engineer</h3>
+                                                <p>Teleperformance, Monterrey, Mexico</p>
+                                            </div>
+                                        </div>
+                                        <div class="flip-back">
+                                            <div class="back-content">
+                                                <p>High-volume technical support with focus on first-call resolution and customer satisfaction. Developed expertise in rapid diagnostics and clear communication under pressure.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Experience Item 3 -->
+                                <div class="flip-container element-flip-container experience-flip">
+                                    <div class="flip-inner">
+                                        <div class="flip-front">
+                                            <div class="experience-item">
+                                                <h3>Data Analyst and IT Engineer</h3>
+                                                <p>Political party state government campaign, Colima, Mexico</p>
+                                            </div>
+                                        </div>
+                                        <div class="flip-back">
+                                            <div class="back-content">
+                                                <p>Leveraging data analytics to drive strategic decisions during high-stakes political campaigns. Built systems for real-time voter data processing and visualization.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Experience Item 4 -->
+                                <div class="flip-container element-flip-container experience-flip">
+                                    <div class="flip-inner">
+                                        <div class="flip-front">
+                                            <div class="experience-item">
+                                                <h3>Director of Technology Management & Development</h3>
+                                                <p>First company in Colima to connect with American companies for textile architecture technology</p>
+                                            </div>
+                                        </div>
+                                        <div class="flip-back">
+                                            <div class="back-content">
+                                                <p>Pioneered international technology partnerships, bringing innovative textile architecture solutions to the Mexican market. Led cross-border business development and technical integration.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Experience Item 5 -->
+                                <div class="flip-container element-flip-container experience-flip">
+                                    <div class="flip-inner">
+                                        <div class="flip-front">
+                                            <div class="experience-item">
+                                                <h3>Founder & CEO</h3>
+                                                <p>First company in Colima to import Japanese wide-format digital printing technology</p>
+                                            </div>
+                                        </div>
+                                        <div class="flip-back">
+                                            <div class="back-content">
+                                                <p>Entrepreneurial journey building a business from the ground up. Identified market opportunity, established international supplier relationships, and trained local workforce on cutting-edge technology.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-back">
+                        <div class="back-content">
+                            <h3>From Entrepreneur to Enterprise</h3>
+                            <p>My career spans founding companies to supporting Fortune 500 giants. This journey taught me that whether you're building something new or maintaining complex systems, success comes down to the same principles: deep technical knowledge, clear communication, and genuine care for the people you serve.</p>
+                            <div class="flip-hint">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                </svg>
+                                Click to flip back
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACHIEVEMENTS CARD -->
+            <div class="flip-container card-flip-container animate-in">
+                <div class="flip-inner">
+                    <div class="flip-front">
+                        <div class="card">
+                            <div class="card-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                                </svg>
+                            </div>
+                            <h2>Achievements</h2>
+                            <div class="card-items-wrapper">
+                                <!-- Achievement 1 -->
+                                <div class="flip-container element-flip-container achievement-flip">
+                                    <div class="flip-inner">
+                                        <div class="flip-front">
+                                            <div class="achievement-badge">
+                                                <div class="badge-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                                                    </svg>
+                                                </div>
+                                                <div class="badge-content">
+                                                    <h3>On the Spot Award</h3>
+                                                    <p>8× Winner at TATA TCS</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flip-back">
+                                            <div class="back-content">
+                                                <p>Recognized 8 times for exceptional problem-solving and going above expectations in critical moments—when systems were down and clients needed immediate solutions.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Achievement 2 -->
+                                <div class="flip-container element-flip-container achievement-flip">
+                                    <div class="flip-inner">
+                                        <div class="flip-front">
+                                            <div class="achievement-badge">
+                                                <div class="badge-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                    </svg>
+                                                </div>
+                                                <div class="badge-content">
+                                                    <h3>Best Team Award</h3>
+                                                    <p>3× Winner at TATA TCS</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flip-back">
+                                            <div class="back-content">
+                                                <p>Leadership in fostering collaboration, knowledge sharing, and collective success. Proof that the best technical work happens when teams trust and support each other.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-back">
+                        <div class="back-content">
+                            <h3>What Recognition Means</h3>
+                            <p>Awards aren't the goal—they're evidence of consistent excellence. Each "On the Spot" recognition represents a crisis resolved, a client saved, and a team supported. The Best Team awards reflect my belief that we rise together.</p>
+                            <div class="flip-hint">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                </svg>
+                                Click to flip back
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TECHNICAL SKILLS CARD -->
+            <div class="flip-container card-flip-container full-width animate-in">
+                <div class="flip-inner">
+                    <div class="flip-front">
+                        <div class="card full-width">
+                            <div class="card-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                            <h2>Technical Skills</h2>
+                            <div class="skills-grid">
+                                <div class="flip-container skill-flip-container">
+                                    <div class="flip-inner">
+                                        <div class="flip-front"><span class="skill-tag">Citrix VDI</span></div>
+                                        <div class="flip-back">Virtual desktop deployment & troubleshooting</div>
+                                    </div>
+                                </div>
+                                <div class="flip-container skill-flip-container">
+                                    <div class="flip-inner">
+                                        <div class="flip-front"><span class="skill-tag">Workspot VDI</span></div>
+                                        <div class="flip-back">Cloud-native VDI for remote teams</div>
+                                    </div>
+                                </div>
+                                <div class="flip-container skill-flip-container">
+                                    <div class="flip-inner">
+                                        <div class="flip-front"><span class="skill-tag">Citrix Cloud</span></div>
+                                        <div class="flip-back">Workspace management & app delivery</div>
+                                    </div>
+                                </div>
+                                <div class="flip-container skill-flip-container">
+                                    <div class="flip-inner">
+                                        <div class="flip-front"><span class="skill-tag">Palo Alto VPN</span></div>
+                                        <div class="flip-back">Secure remote access configuration</div>
+                                    </div>
+                                </div>
+                                <div class="flip-container skill-flip-container">
+                                    <div class="flip-inner">
+                                        <div class="flip-front"><span class="skill-tag">ServiceNow</span></div>
+                                        <div class="flip-back">ITSM & incident management</div>
+                                    </div>
+                                </div>
+                                <div class="flip-container skill-flip-container">
+                                    <div class="flip-inner">
+                                        <div class="flip-front"><span class="skill-tag">Genesys Cloud</span></div>
+                                        <div class="flip-back">Contact center & CX platform</div>
+                                    </div>
+                                </div>
+                                <div class="flip-container skill-flip-container">
+                                    <div class="flip-inner">
+                                        <div class="flip-front"><span class="skill-tag">Avaya Products</span></div>
+                                        <div class="flip-back">Enterprise communications systems</div>
+                                    </div>
+                                </div>
+                                <div class="flip-container skill-flip-container">
+                                    <div class="flip-inner">
+                                        <div class="flip-front"><span class="skill-tag">Salesforce</span></div>
+                                        <div class="flip-back">CRM admin & support integration</div>
+                                    </div>
+                                </div>
+                                <div class="flip-container skill-flip-container">
+                                    <div class="flip-inner">
+                                        <div class="flip-front"><span class="skill-tag">Mainframe</span></div>
+                                        <div class="flip-back">Legacy system connectivity & terminals</div>
+                                    </div>
+                                </div>
+                                <div class="flip-container skill-flip-container">
+                                    <div class="flip-inner">
+                                        <div class="flip-front"><span class="skill-tag">AWS</span></div>
+                                        <div class="flip-back">Cloud infrastructure troubleshooting</div>
+                                    </div>
+                                </div>
+                                <div class="flip-container skill-flip-container">
+                                    <div class="flip-inner">
+                                        <div class="flip-front"><span class="skill-tag">Workday</span></div>
+                                        <div class="flip-back">HR & finance system support</div>
+                                    </div>
+                                </div>
+                                <div class="flip-container skill-flip-container">
+                                    <div class="flip-inner">
+                                        <div class="flip-front"><span class="skill-tag">Microsoft Products</span></div>
+                                        <div class="flip-back">O365, Azure AD & endpoint mgmt</div>
+                                    </div>
+                                </div>
+                                <div class="flip-container skill-flip-container">
+                                    <div class="flip-inner">
+                                        <div class="flip-front"><span class="skill-tag">Zscaler</span></div>
+                                        <div class="flip-back">Zero trust security & web gateway</div>
+                                    </div>
+                                </div>
+                                <div class="flip-container skill-flip-container">
+                                    <div class="flip-inner">
+                                        <div class="flip-front"><span class="skill-tag">PPS/POC/POS</span></div>
+                                        <div class="flip-back">Payment & point-of-sale systems</div>
+                                    </div>
+                                </div>
+                                <div class="flip-container skill-flip-container">
+                                    <div class="flip-inner">
+                                        <div class="flip-front"><span class="skill-tag">Networking Solutions</span></div>
+                                        <div class="flip-back">LAN/WAN troubleshooting & config</div>
+                                    </div>
+                                </div>
+                                <div class="flip-container skill-flip-container">
+                                    <div class="flip-inner">
+                                        <div class="flip-front"><span class="skill-tag">L1/L2 Support</span></div>
+                                        <div class="flip-back">Multi-tier escalation handling</div>
+                                    </div>
+                                </div>
+                                <div class="flip-container skill-flip-container">
+                                    <div class="flip-inner">
+                                        <div class="flip-front"><span class="skill-tag">Hardware Installation</span></div>
+                                        <div class="flip-back">Desktop & peripheral deployment</div>
+                                    </div>
+                                </div>
+                                <div class="flip-container skill-flip-container">
+                                    <div class="flip-inner">
+                                        <div class="flip-front"><span class="skill-tag">Software Troubleshooting</span></div>
+                                        <div class="flip-back">Cross-platform app diagnostics</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip-back">
+                        <div class="back-content">
+                            <h3>Always Learning</h3>
+                            <p>Technology evolves constantly—and so do I. From virtualization to cloud security, from legacy mainframes to modern SaaS platforms, I maintain deep expertise across the full technology stack. Each skill represents hands-on experience solving real problems for real users.</p>
+                            <div class="flip-hint">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                </svg>
+                                Click to flip back
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Track currently flipped element
+        let currentlyFlipped = null;
+
+        // Function to flip a card/element (closes any other open one first)
+        function flipElement(element, event) {
+            // Stop propagation to prevent parent flips
+            if (event) {
+                event.stopPropagation();
+            }
+
+            // If clicking the same element, just toggle it
+            if (currentlyFlipped === element) {
+                element.classList.remove('flipped');
+                currentlyFlipped = null;
+                return;
+            }
+
+            // Close any currently flipped element
+            if (currentlyFlipped) {
+                currentlyFlipped.classList.remove('flipped');
+            }
+
+            // Flip the new element
+            element.classList.add('flipped');
+            currentlyFlipped = element;
+        }
+
+        // Attach click handlers to all flip containers
+        document.querySelectorAll('.flip-container').forEach(container => {
+            container.addEventListener('click', function(event) {
+                // For card-level containers, check if click is on a child flip container
+                if (this.classList.contains('card-flip-container') || this.classList.contains('header-flip-container')) {
+                    // If the click originated from a child element-flip-container, don't flip the card
+                    if (event.target.closest('.element-flip-container') || event.target.closest('.skill-flip-container')) {
+                        return;
+                    }
+                }
+
+                flipElement(this, event);
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Close flipped card when clicking outside
+        document.addEventListener('click', function(event) {
+            if (currentlyFlipped && !event.target.closest('.flip-container')) {
+                currentlyFlipped.classList.remove('flipped');
+                currentlyFlipped = null;
+            }
+        });
+    </script>
+</body>
+</html>
